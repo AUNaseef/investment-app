@@ -20,7 +20,10 @@ class CustomerController extends Controller
 
     public function show(User $user)
     {
-        return view('customers.show', ['user' => $user]);
+        return view('customers.show', [
+            'user' => $user,
+            'investments' => $user->investments()->orderBy('date', 'desc')->get()
+        ]);
     }
 
     public function add_investment(Request $request, User $user)
@@ -57,5 +60,12 @@ class CustomerController extends Controller
         }
 
         return redirect('/customers/' . $user->id);
+    }
+
+    public function approve(User $user){
+        $user->forceFill([
+            'approved' => '1'
+        ])->save();
+        return back();
     }
 }

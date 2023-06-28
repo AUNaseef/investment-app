@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Investment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InvestmentController extends Controller
 {
@@ -36,7 +37,14 @@ class InvestmentController extends Controller
      */
     public function show(Investment $investment)
     {
-        //
+        $user = Auth::user();
+        $payments = $investment->payments()->get();
+        $sum = $investment->payments->sum('amount');
+
+        if($user->role == 'admin' || $investment->user_id == $user->id){
+            return view('investments.show', compact('investment', 'payments', 'sum'));
+        }
+        abort(403);
     }
 
     /**

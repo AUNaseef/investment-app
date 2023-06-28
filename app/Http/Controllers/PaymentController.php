@@ -52,7 +52,12 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $values = $request->validate([
+            'amount' => 'required'
+        ]);
+
+        $payment->forceFill($values)->save();
+        return back();
     }
 
     /**

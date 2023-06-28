@@ -12,7 +12,10 @@ class DashboardController extends Controller
         if($user->role == 'admin'){
             return view('admin.dashboard');
         }else{
-            return view('dashboard');
+            return view('customers.show', [
+                'user' => $user,
+                'investments' => $user->investments()->orderBy('date', 'desc')->get()
+            ]);
         }
     }
 }

@@ -25,8 +25,7 @@
         <!-- logo -->
         <a href="/">
             <div class="flex-none w-56 flex flex-row items-center">
-                <img src="/img/logo.png" class="w-10 flex-none">
-                <strong class="capitalize ml-1 flex-1">Apex Vender</strong>
+                <img src="/img/logo.png" class="w-25 flex-none">
 
                 <button id="sliderBtn" class="flex-none text-right text-gray-900 hidden md:block">
                     <i class="fad fa-list-ul"></i>
@@ -78,12 +77,13 @@
                         <!-- item -->
                         <form action="/logout" method="post">
                             @csrf
-                            <input type="submit">
-                            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                            <button type="submit" class="w-full text-left">
+                                <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
                                 onclick="">
                                 <i class="fad fa-user-times text-xs mr-1"></i>
                                 log out
-                            </a>
+                            </a></button>
+  
                         </form>
 
                         <!-- end item -->
