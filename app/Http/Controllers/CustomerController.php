@@ -11,44 +11,51 @@ use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
-    public function index(Request $request){
-        return view('customers.index');
+    public function index(Request $request)
+    {
+        return view('customers.index', [
+            'customers' => User::where('role', 'client')->get()
+        ]);
     }
 
-    public function show(User $user){
+    public function show(User $user)
+    {
         return view('customers.show', ['user' => $user]);
     }
-    public function saveinvestmentinfo(Request $request ,User $user){
 
-        $loggedinuser = Auth::user();
-        $date = $request->date;
+    public function add_investment(Request $request, User $user)
+    {
+        $request->validate([
+            'amount' => 'required',
+            'date' => 'required',
+            'profit_percentage' => 'required'
+        ]);
+
+        $admin = Auth::user();
         $amount = $request->amount;
+        $date = $request->date;
         $profit_percentage = $request->profit_percentage;
 
-
-
-        $investment = Investment::create([
-            'admin_id' => $loggedinuser->id,
-            'user_id' => $user->id,
-            'date' => $date,
-            'amount' => $amount,
-            'profit_percentage' => $profit_percentage,
-        ]);
         $date = Carbon::createFromFormat('Y-m-d', $date);
 
-        for ($i=0; $i < 5; $i++) { 
-
-           $payment = Payment::create([
-            'investment_id' =>  $investment->id,
-            'amount' => 0,
-            'due_date' => $date,
-            'paid' => 0
+        $investment = Investment::create([
+            'admin_id' => $admin->id,
+            'user_id' => $user->id,
+            'amount' => $amount,
+            'date' => $date,
+            'profit_percentage' => $profit_percentage
         ]);
+
+        for ($i = 0; $i <= 15; $i++) {
+            Payment::create([
+                'investment_id' =>  $investment->id,
+                'amount' => 0,
+                'due_date' => $date,
+                'paid' => 0
+            ]);
             $date = $date->addDays(30);
-            //dd($date);
-       }
+        }
 
-
-        return view('customers.show', ['user' => $user]);
+        return redirect('/customers/' . $user->id);
     }
 }

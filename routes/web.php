@@ -35,7 +35,7 @@
                 });
 
                 Route::get('/customers/{user}', [CustomerController::class, 'show']);
-                 Route::post('/customers/{user}', [CustomerController::class, 'saveinvestmentinfo']);
+                Route::post('/customers/{user}/add-investment', [CustomerController::class, 'add_investment']);
                 Route::get('/customers/', [CustomerController::class, 'index']);
             });
         });

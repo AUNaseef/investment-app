@@ -15,8 +15,8 @@
 
     <!-- table body -->
     <tbody class="text-left text-gray-600">
-        @foreach($users as $user)
-        <x-customer-row :user="$user" />
+        @foreach($customers as $customer)
+        <x-customer-row :customer="$customer" />
         @endforeach
     </tbody>
     <!-- end table body -->

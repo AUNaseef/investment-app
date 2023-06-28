@@ -3,7 +3,7 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
                 <h2 class="font-bold text-lg mb-10">Customers</h2>
-                <x-customers-table/>
+                <x-customer-table :customers="$customers"/>
             </div>
         </div>
     </div>
