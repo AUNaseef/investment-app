@@ -17,6 +17,15 @@ class CustomerController extends Controller
         $query->where('role', 'client');
         $results = [];
 
+
+        if($request->status == 'approved'){
+            $query->where('approved', 1);
+        }
+
+        if($request->status == 'unapproved'){
+            $query->where('approved', 0);
+        }
+
         // Search in all fields
         if ($request->input('search')) {
             $searchTerm = $request->input('search');
@@ -29,6 +38,7 @@ class CustomerController extends Controller
         }else{
             $results = $query->get();
         }
+
 
         return view('customers.index', [
             'customers' => $results

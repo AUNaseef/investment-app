@@ -26,7 +26,7 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
       <form action="/payments/{{$payment->id}}" method="post">
         @csrf
         @method('put')
-        <input type="text" name="amount" value="{{$payment->amount ?? null}}">
+        <input type="number" name="amount" value="{{$payment->amount ?? null}}">
         <button type="submit" class="border border-black p-1 rounded">save</button>
       </form>
     @else

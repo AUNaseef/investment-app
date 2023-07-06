@@ -70,7 +70,7 @@ class PaymentController extends Controller
     public function update(Request $request, Payment $payment)
     {
         $values = $request->validate([
-            'amount' => 'required'
+            'amount' => 'required|numeric'
         ]);
 
         $payment->forceFill($values)->save();
