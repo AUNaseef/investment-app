@@ -12,12 +12,16 @@
   </th>
   <!-- name -->
 
+  <!-- phone -->
+  <th class="w-1/4 mb-4 text-xs font-extrabold tracking-wider text-right">{{$customer->phone ?? null}}</th>
+  <!-- phone -->
+
   <!-- email -->
   <th class="w-1/4 mb-4 text-xs font-extrabold tracking-wider text-right">{{$customer->email ?? null}}</th>
   <!-- email -->
 
   <!-- amount -->
-  <th class="w-1/4 mb-4 text-xs font-extrabold tracking-wider text-right">{{$customer->amount ?? "$21323421"}}<span
+  <th class="w-1/4 mb-4 text-xs font-extrabold tracking-wider text-right">${{$customer->investments->sum('amount')}}<span
       class="num-4"></span>
   </th>
   <!-- amount -->

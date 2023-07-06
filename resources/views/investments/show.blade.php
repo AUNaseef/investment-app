@@ -9,26 +9,26 @@ $isAdmin = Auth::user()->role == 'admin'
 
                 <div class="mb-10 grid grid-cols-3 gap-5 mt-5 lg:grid-cols-1">
                     <!-- Total Investment -->
-                    <div class="card col-span-1">
+                    <div class="card card-investment col-span-1 text-center rounded-lg">
                         <div class="card-body">
-                            <h5 class="uppercase text-xs tracking-wider font-extrabold">Total Investment</h5>
-                            <h1 class="capitalize text-lg mt-1 mb-1">$<span class="num-3"></span>{{$investment->amount}}</span></h1>
+                            <h5 class="uppercase text-sm tracking-wider">Investment Amount</h5>
+                            <h1 class="capitalize text-2xl mt-1 mb-1">$<span class="num-3"></span>{{$investment->amount}}</span></h1>
                         </div>
                     </div>
 
                     <!-- Profit Percentage -->
-                    <div class="card col-span-1">
+                    <div class="card card-investment col-span-1 text-center rounded-lg">
                         <div class="card-body">
-                            <h5 class="uppercase text-xs tracking-wider font-extrabold">Profit Percentage</h5>
-                            <h1 class="capitalize text-lg mt-1 mb-1">{{$investment->profit_percentage}}</span></h1>
+                            <h5 class="uppercase text-sm tracking-wider">Profit Percentage</h5>
+                            <h1 class="capitalize text-2xl mt-1 mb-1">{{$investment->profit_percentage}}</span></h1>
                         </div>
                     </div>
 
                     <!-- Amount Due -->
-                    <div class="card col-span-1">
+                    <div class="card card-investment col-span-1 text-center rounded-lg">
                         <div class="card-body">
-                            <h5 class="uppercase text-xs tracking-wider font-extrabold">Amount Due</h5>
-                            <h1 class="capitalize text-lg mt-1 mb-1">$<span class="num-3"></span><span>{{($investment->amount * $investment->profit_percentage) - $sum}}</span></h1>
+                            <h5 class="uppercase text-sm tracking-wider">Amount Due</h5>
+                            <h1 class="capitalize text-2xl mt-1 mb-1">$<span class="num-3"></span><span>{{($investment->amount * $investment->profit_percentage) - $sum}}</span></h1>
                         </div>
                     </div>
                 </div>

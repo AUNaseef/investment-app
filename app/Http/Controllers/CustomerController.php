@@ -13,8 +13,25 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
+        $query = User::query();
+        $query->where('role', 'client');
+        $results = [];
+
+        // Search in all fields
+        if ($request->input('search')) {
+            $searchTerm = $request->input('search');
+            $results = $query->where(function ($search) use ($searchTerm) {
+                $search->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('email', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('phone', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('address', 'like', '%' . $searchTerm . '%');
+            })->get();
+        }else{
+            $results = $query->get();
+        }
+
         return view('customers.index', [
-            'customers' => User::where('role', 'client')->get()
+            'customers' => $results
         ]);
     }
 
@@ -22,16 +39,21 @@ class CustomerController extends Controller
     {
         return view('customers.show', [
             'user' => $user,
-            'investments' => $user->investments()->orderBy('date', 'desc')->get()
+            'investments' => $user->investments()->orderBy('date', 'desc')->get(),
+            'stats' => [
+                'total_investments' => $user->investments->sum('amount'),
+                'total_earnings' => $user->payments->sum('amount'),
+                'total_earnings_due' => $user->investments->sum('profit')
+            ]
         ]);
     }
 
     public function add_investment(Request $request, User $user)
     {
         $request->validate([
-            'amount' => 'required',
-            'date' => 'required',
-            'profit_percentage' => 'required'
+            'amount' => 'required|numeric',
+            'date' => 'required|date',
+            'profit_percentage' => 'required|numeric'
         ]);
 
         $admin = Auth::user();
@@ -50,13 +72,13 @@ class CustomerController extends Controller
         ]);
 
         for ($i = 0; $i <= 15; $i++) {
+            $date = $date->addDays(30);
             Payment::create([
                 'investment_id' =>  $investment->id,
                 'amount' => 0,
                 'due_date' => $date,
                 'paid' => 0
             ]);
-            $date = $date->addDays(30);
         }
 
         return redirect('/customers/' . $user->id);

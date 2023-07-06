@@ -5,6 +5,7 @@
     <thead class="text-left">
         <tr>
             <th class="w-1/2 pb-10 text-sm font-extrabold tracking-wide">Name</th>
+            <th class="w-1/4 pb-10 text-sm font-extrabold tracking-wide text-right">Phone</th>
             <th class="w-1/4 pb-10 text-sm font-extrabold tracking-wide text-right">Email</th>
             <th class="w-1/4 pb-10 text-sm font-extrabold tracking-wide text-right">Total Investment
             </th>

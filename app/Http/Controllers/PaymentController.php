@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -10,9 +11,25 @@ class PaymentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = Payment::query();
+
+        if($request->status == 'paid'){
+            $query->where('amount', '>', 0);
+        }
+
+        elseif($request->status == 'unpaid'){
+            $query->where('amount', '<=', 0);
+        }
+
+        if($request->due == 'today'){
+            $query->whereDate('due_date', Carbon::today()->toDateString());
+        }
+
+        return view('payments.index', [
+            'payments' => $query->get()
+        ]);
     }
 
     /**

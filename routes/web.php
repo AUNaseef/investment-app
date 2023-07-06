@@ -38,7 +38,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/customers/{user}/approve', [CustomerController::class, 'approve']);
             Route::get('/customers/{user}', [CustomerController::class, 'show']);
             Route::post('/customers/{user}/add-investment', [CustomerController::class, 'add_investment']);
-            Route::get('/customers/', [CustomerController::class, 'index']);
+            Route::get('/customers', [CustomerController::class, 'index']);
+
+            Route::get('/payments', [PaymentController::class, 'index']);
 
             Route::put('/payments/{payment}', [PaymentController::class, 'update']);
         });

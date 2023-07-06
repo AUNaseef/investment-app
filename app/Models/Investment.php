@@ -16,7 +16,19 @@ class Investment extends Model
         'date',
     ];
 
+    /**
+     * Returns the item's price according to its worthy
+     */
+    public function getProfitAttribute()
+    {
+        return $this->amount * $this->profit_percentage;
+    }
+
     public function payments(){
         return $this->hasMany(Payment::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function investments(){
         return $this->hasMany(Investment::class);
     }
+
+    public function payments(){
+        return $this->hasManyThrough(Payment::class, Investment::class);
+    }
 }

@@ -1,0 +1,7 @@
+.card-investment {
+	background: rgba(26, 43, 68, 1);
+	background-image: url('/img/dot-bg.png');
+	background-position: center;
+	color: white;
+	border: none;
+}

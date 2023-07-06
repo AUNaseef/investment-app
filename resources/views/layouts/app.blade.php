@@ -7,7 +7,8 @@
     <link rel="shortcut icon" href="/img/fav.png" type="image/x-icon">
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <title>Welcome To Cleopatra</title>
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+    <title>Apex Vender</title>
 </head>
 
 <body class="bg-gray-100">
