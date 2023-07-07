@@ -22,6 +22,7 @@ Route::get('/unapproved', function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile/user_id/{user}', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -43,6 +44,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/payments', [PaymentController::class, 'index']);
 
             Route::put('/payments/{payment}', [PaymentController::class, 'update']);
+            Route::put('/investments/{investment}', [InvestmentController::class, 'update']);
         });
     });
 });

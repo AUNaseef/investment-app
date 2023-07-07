@@ -7,6 +7,7 @@
             <th class="w-1/3 pb-2 text-sm font-extrabold tracking-wide">Amount</th>
             <th class="w-1/3 pb-2 text-sm font-extrabold tracking-wide text-right">Profit Percentage</th>
             <th class="w-1/3 pb-2 text-sm font-extrabold tracking-wide text-right">Date</th>
+            <th class="w-1/4 pb-2 text-sm font-extrabold tracking-wide text-right"></th>
         </tr>
     </thead>
     <!-- end table head -->

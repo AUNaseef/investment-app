@@ -12,7 +12,7 @@ $isAdmin = Auth::user()->role == 'admin'
                     <div class="card card-investment col-span-1 text-center rounded-lg">
                         <div class="card-body">
                             <h5 class="uppercase text-sm tracking-wider">Investment Amount</h5>
-                            <h1 class="capitalize text-2xl mt-1 mb-1">$<span class="num-3"></span>{{$investment->amount}}</span></h1>
+                            <h1 class="capitalize text-2xl mt-1 mb-1">LKR <span class="num-3"></span>{{$investment->amount}}</span></h1>
                         </div>
                     </div>
 
@@ -28,7 +28,7 @@ $isAdmin = Auth::user()->role == 'admin'
                     <div class="card card-investment col-span-1 text-center rounded-lg">
                         <div class="card-body">
                             <h5 class="uppercase text-sm tracking-wider">Amount Due</h5>
-                            <h1 class="capitalize text-2xl mt-1 mb-1">$<span class="num-3"></span><span>{{($investment->amount * $investment->profit_percentage) - $sum}}</span></h1>
+                            <h1 class="capitalize text-2xl mt-1 mb-1">LKR <span class="num-3"></span><span>{{($investment->amount * $investment->profit_percentage) - $sum}}</span></h1>
                         </div>
                     </div>
                 </div>

@@ -60,7 +60,13 @@ class InvestmentController extends Controller
      */
     public function update(Request $request, Investment $investment)
     {
-        //
+        $values = [
+            'amount' => $request->amount,
+            'profit_percentage' => $request->profit_percentage,
+            'date' => $request->date
+        ];
+        $investment->forceFill($values)->save();
+        return back();
     }
 
     /**

@@ -21,7 +21,7 @@
   <!-- email -->
 
   <!-- amount -->
-  <th class="w-1/4 mb-4 text-xs font-extrabold tracking-wider text-right">${{$customer->investments->sum('amount')}}<span
+  <th class="w-1/4 mb-4 text-xs font-extrabold tracking-wider text-right">LKR {{$customer->investments->sum('amount')}}<span
       class="num-4"></span>
   </th>
   <!-- amount -->

@@ -9,6 +9,8 @@ class DashboardController extends Controller
     public function index(Request $request){
 
         $user = $request->user();
+
+       
         if($user->role == 'admin'){
             return view('admin.dashboard');
         }else{

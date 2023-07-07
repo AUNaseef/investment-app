@@ -15,16 +15,28 @@ class PaymentController extends Controller
     {
         $query = Payment::query();
 
-        if($request->status == 'paid'){
+        if ($request->status == 'paid') {
             $query->where('amount', '>', 0);
-        }
-
-        elseif($request->status == 'unpaid'){
+        } elseif ($request->status == 'unpaid') {
             $query->where('amount', '<=', 0);
         }
 
-        if($request->due == 'today'){
+        if ($request->due == 'today') {
             $query->whereDate('due_date', Carbon::today()->toDateString());
+        }
+
+        if ($request->due == 'old') {
+            $fiveDaysAgo = now()->subDays(7)->toDateString();
+            $query->whereDate('due_date', '<=', $fiveDaysAgo);
+
+
+            $startDate = Carbon::now()->subDays(7)->startOfDay();
+            $endDate = Carbon::now()->endOfDay();
+
+            $data = Payment::whereBetween('due_date', [$startDate, $endDate])->get();
+            return view('payments.index', [
+                'payments' =>  $data
+            ]);
         }
 
         return view('payments.index', [

@@ -26,11 +26,14 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
       <form action="/payments/{{$payment->id}}" method="post">
         @csrf
         @method('put')
+        <div class="flex gap-5">
+          <p class="pt-2">LKR</p>
         <input type="number" name="amount" value="{{$payment->amount ?? null}}">
-        <button type="submit" class="border border-black p-1 rounded">save</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">save</button>
+        </div>
       </form>
     @else
-      <p class="name-1">${{$payment->amount ?? null}}</p>
+      <p class="name-1">LKR {{$payment->amount ?? null}}</p>
     @endif
   </td>
   <!-- amount -->
