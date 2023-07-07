@@ -31,6 +31,7 @@
     <th class="mb-4 text-xs font-extrabold tracking-wider text-right">
       <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">save</button>
       <a href="/investments/{{$investment->id}}"><button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">view</button></a>
+      <a href="/investments/{{$investment->id}}/delete"><button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">delete</button></a>
     </th>
   </tr>
 </form>

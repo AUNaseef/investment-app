@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("investment_id");
+            $table->foreignId("investment_id")->constrained()->cascadeOnDelete();
             $table->double('amount')->default(0.0);
             $table->date('due_date');
             $table->boolean('paid')->default(0);

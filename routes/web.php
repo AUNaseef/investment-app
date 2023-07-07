@@ -29,12 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::middleware('approved')->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
         Route::get('/investments/{investment}', [InvestmentController::class, 'show']);
+        Route::get('/investments/{investment}/delete', [InvestmentController::class, 'destroy']);
 
         Route::middleware('role:admin')->group(function () {
             Route::get('/users', function () {
                 return view('users.index');
             });
-
 
             // Customer Routes
             Route::get('customers/{user}/edit', [CustomerController::class, 'edit'])->name('customer.edit');

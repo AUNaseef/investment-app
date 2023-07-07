@@ -74,6 +74,7 @@ class InvestmentController extends Controller
      */
     public function destroy(Investment $investment)
     {
-        //
+        $investment->delete();
+        return back();
     }
 }
