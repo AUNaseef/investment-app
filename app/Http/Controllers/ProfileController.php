@@ -15,11 +15,10 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request ,$userId = null): View
+    public function edit(Request $request): View
     {
-        $user = User::find($userId);
         return view('profile.edit', [
-            'user' => ($userId != null ? $user : $request->user()),
+            'user' =>$request->user(),
         ]);
     }
 

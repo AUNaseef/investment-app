@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class CustomerController extends Controller
 {
@@ -81,7 +82,7 @@ class CustomerController extends Controller
             'profit_percentage' => $profit_percentage
         ]);
 
-        for ($i = 0; $i <= 15; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $date = $date->addDays(30);
             Payment::create([
                 'investment_id' =>  $investment->id,
@@ -98,6 +99,33 @@ class CustomerController extends Controller
         $user->forceFill([
             'approved' => '1'
         ])->save();
+        return back();
+    }
+
+    public function edit(Request $request, User $user){
+        return view('profile.edit', ['user' => $user, 'edit_user' => true]);
+    }
+
+    public function update(Request $request, User $user){
+        $fields = $request->validate([
+            'name' => ['string', 'max:255'],
+            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($user->id)],
+            'phone' => ['string', 'max:15'],
+            'address' => ['string', 'max:255']
+        ]);
+
+        $user->update($fields);
+        $user->save();
+
+        return back();
+    }
+
+    public function update_password(Request $request, User $user){
+        $fields = $request->validateWithBag('updatePassword',[
+            'password' => ['required','string', 'min:8', 'confirmed']
+        ]);
+
+        $user->forceFill($fields)->save();
         return back();
     }
 }

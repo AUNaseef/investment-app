@@ -22,7 +22,6 @@ Route::get('/unapproved', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/user_id/{user}', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -36,6 +35,11 @@ Route::middleware('auth')->group(function () {
                 return view('users.index');
             });
 
+
+            // Customer Routes
+            Route::get('customers/{user}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+            Route::patch('customers/{user}/edit', [CustomerController::class, 'update'])->name('customer.update');
+            Route::put('customers/{user}/password', [CustomerController::class, 'update_password'])->name('customer.password');
             Route::get('/customers/{user}/approve', [CustomerController::class, 'approve']);
             Route::get('/customers/{user}', [CustomerController::class, 'show']);
             Route::post('/customers/{user}/add-investment', [CustomerController::class, 'add_investment']);
