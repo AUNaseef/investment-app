@@ -10,13 +10,13 @@
                 <h2 class="font-bold text-lg mb-5 pt-2">@if($isAdmin){{$user->name}}'s @else Your @endif Profile</h2>
                 @if($isAdmin)
                     <div>
-                    <a href="/profile/user_id/{{$user->id}}"><button class="bg-red-500 hover:bg-red-700 text-white font-bold px-4 rounded">Edit User</button> </a>
+                    <a href="/customers/{{$user->id}}/delete"><button class="bg-red-500 hover:bg-red-700 text-white font-bold px-4 rounded">Delete User</button> </a>
+                    <a href="/customers/{{$user->id}}/edit"><button class="bg-orange-500 hover:bg-orange-700 text-white font-bold px-4 rounded">Edit User</button> </a>
                     <a href="/customers/{{$user->id}}?asUser"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded">View As User</button> </a>
                     </div>
                 @endif
                 </div>
                 <div class="mb-5 grid grid-cols-3 gap-5 mt-5 lg:grid-cols-1">
-
                     <!-- Total Investment -->
                     <div class="card card-investment col-span-1 text-center rounded-lg">
                         <div class="card-body">

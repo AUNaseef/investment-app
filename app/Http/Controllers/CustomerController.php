@@ -128,4 +128,9 @@ class CustomerController extends Controller
         $user->forceFill($fields)->save();
         return back();
     }
+
+    public function destroy(User $user){
+        $user->delete();
+        return redirect('/customers');
+    }
 }

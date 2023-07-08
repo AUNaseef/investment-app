@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
             // Customer Routes
             Route::get('customers/{user}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
             Route::patch('customers/{user}/edit', [CustomerController::class, 'update'])->name('customer.update');
+            Route::get('customers/{user}/delete', [CustomerController::class, 'destroy'])->name('customer.delete');
             Route::put('customers/{user}/password', [CustomerController::class, 'update_password'])->name('customer.password');
             Route::get('/customers/{user}/approve', [CustomerController::class, 'approve']);
             Route::get('/customers/{user}', [CustomerController::class, 'show']);
