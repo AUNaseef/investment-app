@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Investment;
+use App\Models\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,7 +67,31 @@ class InvestmentController extends Controller
             'profit_percentage' => $request->profit_percentage,
             'date' => $request->date
         ];
+
+        if($request->date != $investment->date){
+            $update_payments = true;
+        }else{
+            $update_payments = false;
+        }
+
         $investment->forceFill($values)->save();
+
+        if($update_payments){
+            $investment->payments()->delete();
+
+            $date = Carbon::createFromFormat('Y-m-d', $investment->date);
+            
+            for ($i = 0; $i < 15; $i++) {
+                $date = $date->addDays(30);
+                Payment::create([
+                    'investment_id' =>  $investment->id,
+                    'amount' => 0,
+                    'due_date' => $date,
+                    'paid' => 0
+                ]);
+            }
+        }
+
         return back();
     }
 

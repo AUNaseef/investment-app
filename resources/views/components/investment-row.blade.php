@@ -3,7 +3,7 @@
 @endphp
 
 @if($isAdmin)
-<form method="post" action="/investments/{{$investment->id}}">
+<form method="post" action="/investments/{{$investment->id}}" onsubmit="return confirm('All payment records will be deleted if the date was changed, are you sure you want to continue?');">
 @method('put')
 @csrf
   <!-- item -->
