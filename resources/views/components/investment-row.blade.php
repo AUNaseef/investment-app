@@ -53,6 +53,9 @@
     <th class="w-1/4 mb-4 text-xs font-extrabold tracking-wider text-right">{{$investment->date ?? ""}}<span
         class="num-4"></span>
     </th>
-    <!-- date -->
+    <!-- button -->
+    <th class="mb-4 text-xs font-extrabold tracking-wider text-right">
+      <a href="/investments/{{$investment->id}}{{request()->has('asUser') ? "?asUser" : null}}"><button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">view</button></a>
+    </th>
   </tr>
 @endif

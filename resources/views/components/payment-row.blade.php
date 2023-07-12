@@ -10,7 +10,7 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
 <!-- item -->
 <tr>
 
-  @if($details)
+  @if($details && request()->has('asUser'))
   <!-- customer -->
   <td class="mb-4 text-xs font-extrabold tracking-wider">
     <a href="/customers/{{$payment->investment->user->id}}">
@@ -22,7 +22,7 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
 
   <!-- amount -->
   <td class="mb-4 text-xs font-extrabold tracking-wider flex flex-row items-center w-full">
-    @if(Auth::user()->role == 'admin')
+    @if(Auth::user()->role == 'admin' && !request()->has('asUser'))
       <form action="/payments/{{$payment->id}}" method="post">
         @csrf
         @method('put')
