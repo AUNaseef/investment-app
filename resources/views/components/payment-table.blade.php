@@ -9,8 +9,10 @@
     <!-- table head -->
     <thead class="text-left">
         <tr>
-            @if($details)
+            @if($details && !request()->has('asUser'))
             <th class="pb-2 text-sm font-extrabold tracking-wide">Customer</th>
+            <th class="pb-2 text-sm font-extrabold tracking-wide">Investment Amount</th>
+            <th class="pb-2 text-sm font-extrabold tracking-wide">Investment Date</th>
             <th class="pb-2 text-sm font-extrabold tracking-wide">Amount</th>
             <th class="pb-2 text-sm font-extrabold tracking-wide">Date</th>
             <th class="pb-2 text-sm font-extrabold tracking-wide">Status</th>

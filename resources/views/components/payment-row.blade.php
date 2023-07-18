@@ -10,7 +10,7 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
 <!-- item -->
 <tr>
 
-  @if($details && request()->has('asUser'))
+  @if($details && !request()->has('asUser'))
   <!-- customer -->
   <td class="mb-4 text-xs font-extrabold tracking-wider">
     <a href="/customers/{{$payment->investment->user->id}}">
@@ -18,6 +18,19 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
     </a>
   </td>
   <!-- customer -->
+
+  <!-- investment amount -->
+  <td class="mb-4 text-xs font-extrabold tracking-wider">
+    <a href="/investments/{{$payment->investment->id}}">
+      {{$payment->investment->amount ?? ""}}
+    </a>
+  </td>
+
+  <!-- investment date -->  <td class="mb-4 text-xs font-extrabold tracking-wider">
+    <a href="/investments/{{$payment->investment->id}}">
+      {{$payment->investment->date ?? ""}}
+    </a>
+  </td>
   @endif
 
   <!-- amount -->
@@ -28,7 +41,7 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
         @method('put')
         <div class="flex gap-5">
           <p class="pt-2">LKR</p>
-        <input type="number" name="amount" value="{{$payment->amount ?? null}}">
+        <input type="number" name="amount" value="{{$payment->amount ?? null}}" style="width: 75px">
         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">save</button>
         </div>
       </form>
