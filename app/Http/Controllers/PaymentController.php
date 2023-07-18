@@ -73,7 +73,8 @@ class PaymentController extends Controller
     public function update(Request $request, Payment $payment)
     {
         $values = $request->validate([
-            'amount' => 'required|numeric'
+            'amount' => 'sometimes|required|numeric',
+            'due_date' => 'sometimes|required|date'
         ]);
 
         $payment->forceFill($values)->save();

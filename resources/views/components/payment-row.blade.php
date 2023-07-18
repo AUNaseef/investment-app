@@ -26,36 +26,34 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
     </a>
   </td>
 
-  <!-- investment date -->  <td class="mb-4 text-xs font-extrabold tracking-wider">
+  <!-- investment date -->  
+  <td class="mb-4 text-xs font-extrabold tracking-wider">
     <a href="/investments/{{$payment->investment->id}}">
       {{$payment->investment->date ?? ""}}
     </a>
   </td>
   @endif
 
-  <!-- amount -->
-  <td class="mb-4 text-xs font-extrabold tracking-wider flex flex-row items-center w-full">
-    @if(Auth::user()->role == 'admin' && !request()->has('asUser'))
-      <form action="/payments/{{$payment->id}}" method="post">
-        @csrf
-        @method('put')
-        <div class="flex gap-5">
-          <p class="pt-2">LKR</p>
+  <!-- payment details editable -->  
+  @if(Auth::user()->role == 'admin' && !request()->has('asUser'))
+  <form action="/payments/{{$payment->id}}" method="post">
+    @csrf
+    @method('put')
+    <td class="mb-4 text-xs font-extrabold tracking-wider items-center">
+      <p>
+        LKR
         <input type="number" name="amount" value="{{$payment->amount ?? null}}" style="width: 75px">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">save</button>
-        </div>
-      </form>
-    @else
-      <p class="name-1">LKR {{$payment->amount ?? null}}</p>
-    @endif
-  </td>
-  <!-- amount -->
+      </p>
+    </td>
+    <td class="mb-4 text-xs font-extrabold tracking-wider items-center">
+      <p>
+        <input type="date" name="due_date" value="{{$payment->due_date ?? null}}">
+        <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 mx-4 px-4 rounded">save</button>
+      </p>
+    </td>
+  </form>
+  @endif
 
-  <!-- date -->
-  <td class="mb-4 text-xs font-extrabold tracking-wider">{{$payment->due_date ?? ""}}<span
-      class="num-4"></span>
-  </td>
-  <!-- date -->
 
   <!-- status -->
   <td class="mb-4 text-xs font-extrabold tracking-wider">
