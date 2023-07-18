@@ -52,6 +52,19 @@ $status = $payment->amount > 0 ? "paid" : ($payment->due_date < date("Y-m-d") ? 
       </p>
     </td>
   </form>
+  @else
+
+  <!-- amount -->
+  <td class="mb-4 text-xs font-extrabold tracking-wider">
+    <p class="name-1">LKR {{$payment->amount ?? null}}</p>
+  </td>
+
+
+  <!-- date -->
+  <td class="mb-4 text-xs font-extrabold tracking-wider">
+    {{$payment->due_date ?? ""}}
+  </td>
+
   @endif
 
 
