@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Investment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -10,8 +12,10 @@ class DashboardController extends Controller
 
         $user = $request->user();
 
-       
         if($user->role == 'admin'){
+            $total_investments = Investment::sum('amount');
+            $user_count = User::where('role', 'client')->count();
+            // dd($total_payment);
             return view('admin.dashboard');
         }else{
             return view('customers.show', [
