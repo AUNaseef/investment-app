@@ -25,7 +25,6 @@
                 <div class="flex flex-row justify-between items-center">
                     <div class="h6 text-indigo-700 fad fa-shopping-cart"></div>
                     <span class="rounded-full text-white badge bg-teal-400 text-xs">
-                        12%
                         <i class="fal fa-chevron-up ml-1"></i>
                     </span>
                 </div>
@@ -34,6 +33,8 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5 num-4"></h1>
+                    {{-- TODO --}}
+                    <p>{{$data['total_investments']}}<p>
                     <p>items sales</p>
                 </div>                
                 <!-- end bottom -->
@@ -63,7 +64,9 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5 num-4"></h1>
-                    <p>new orders</p>
+                    {{-- TODO --}}
+                    <p>{{$data['total_due']}}<p>
+                    <p>Total Due</p>
                 </div>                
                 <!-- end bottom -->
     
@@ -92,7 +95,9 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5 num-4"></h1>
-                    <p>total Products</p>
+                    {{-- TODO --}}
+                    <p>{{$data['user_count']}}<p>
+                    <p>total Users</p>
                 </div>                
                 <!-- end bottom -->
     
@@ -121,7 +126,9 @@
                 <!-- bottom -->
                 <div class="mt-8">
                     <h1 class="h5 num-4"></h1>
-                    <p>new Visitor</p>
+                    {{-- TODO --}}
+                    <p>{{$data['unapproved_users']}}<p>
+                    <p>New Users</p>
                 </div>                
                 <!-- end bottom -->
     
@@ -150,14 +157,8 @@
 
             <!-- info -->
             <div class="py-2 ml-10">
-                <h1 class="h6">Good Job, Mohamed!</h1>
-                <p class="text-white text-xs">You've finished all of your tasks for this week.</p>
-
-                <ul class="mt-4">
-                    <li class="text-sm font-light"><i class="fad fa-check-double mr-2 mb-2"></i> Finish Dashboard Design</li>
-                    <li class="text-sm font-light"><i class="fad fa-check-double mr-2 mb-2"></i> Fix Issue #74</li>
-                    <li class="text-sm font-light"><i class="fad fa-check-double mr-2"></i> Publish version 1.0.6</li>
-                </ul>
+                <h1 class="h6">Welcome, {{Auth::user()->name}}!</h1>
+                <p class="text-white text-xs">Hope you are having a great day.</p>
             </div>
             <!-- end info -->
 
@@ -242,8 +243,8 @@
     <div class="card-body grid grid-cols-2 gap-6 lg:grid-cols-1">
 
         <div class="p-8">
-            <h1 class="h2">5,337</h1>
-            <p class="text-black font-medium">Sales this month</p>
+            <h1 class="h2">{{$data['total_investments_lastweek']}}</h1>
+            <p class="text-black font-medium">Sales this week</p>
 
             <div class="mt-20 mb-2 flex items-center">
                 <div class="py-1 px-3 rounded bg-green-200 text-green-900 mr-3">
