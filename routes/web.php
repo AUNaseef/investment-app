@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
             });
 
             // Customer Routes
+            Route::get('/customers/create', [CustomerController::class, 'create']);
+            Route::post('/customers/create', [CustomerController::class, 'store']);
             Route::get('customers/{user}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
             Route::patch('customers/{user}/edit', [CustomerController::class, 'update'])->name('customer.update');
             Route::get('customers/{user}/delete', [CustomerController::class, 'destroy'])->name('customer.delete');

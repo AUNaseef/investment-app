@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class CustomerController extends Controller
@@ -127,6 +128,30 @@ class CustomerController extends Controller
 
         $user->forceFill($fields)->save();
         return back();
+    }
+
+    public function create () {
+        return view('customers.create');
+    }
+
+    public function store (Request $request) {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['nullable', 'required_without:phone', 'string', 'email', 'max:255', 'unique:'.User::class],
+                'phone' => ['nullable', 'required_without:email', 'string', 'max:15','unique:'.User::class],
+                'address' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'confirmed'],
+            ]);
+    
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'password' => Hash::make($request->password),
+            ]);
+
+            return redirect('/customers');
     }
 
     public function destroy(User $user){
